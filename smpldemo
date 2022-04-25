@@ -1,0 +1,57 @@
+{
+    "hylc": {
+        "enabled": true,
+        "material": "hylcmaterials/satin01.json"
+    },
+    "implicit": true,
+
+    "frame_time": 0.0167,
+    "frame_steps": 10,
+
+    "is_smpl": true, 
+    "smpl_model_path": "models/male_model.json", 
+
+    // initialization or interpolation is finished in 50 * 0.0167 ~ 0.9s 
+    "end_time": 4,
+    "cloths": [{
+        // "mesh": "meshes/tshirtiso_uv.obj",
+        "mesh": "meshes/dense_tshirt.obj",
+        "transform": {"translate": [0, -0.23, 0.28], "rotate": [0, 0, 0, 0]},
+
+        // "mesh": "meshes/tshirt.obj",
+        // "transform": {"translate": [0,0,0.5]},
+        // "transform": {"scale":2,"translate": [0.0,0.0,-0.8]},
+        // "mesh": "meshes/tshirt2_uv.obj",
+        // "transform": {"translate": [0.0,0.0,0.5]},
+        "materials": [{"data": "materials/navy-sparkle-sweat.json", "bending_mult": 0.1,
+            "damping": 2e-3}], // ?
+        "remeshing": {
+            "refine_angle": 0.3,
+            "refine_compression": 0.01,
+            "refine_velocity": 0.5,
+            "size": [10e-3, 100e-3], // TODO 8e-3 ?
+            // "size": [10e-3, 50e-3],
+            ////"boundary_detail_mult": 0.75,
+            "aspect_min": 0.2
+        }
+    }],
+    "wind": {"density": 1},
+    // "obstacles": "meshes/guy_shrunk/body%04d.obj",
+    "obstacles": "meshes/pbns_posedsbs_male.obj",
+    "motions": {
+        "smpl_initialization_frames": 50, 
+        "smpl_motfile": "meshes/pbns_posedsbs_male.txt", 
+        "motfile": "meshes/none.mot",
+        "smpl_fps": 30, 
+        "fps": 120
+    },
+    "gravity": [0, 0, -9.8],
+    // "disable": ["popfilter", "remeshing"],
+    "disable": ["popfilter"],
+    "obs_friction": 0.75,
+    "magic": {"repulsion_thickness": 5e-3, "collision_stiffness": 1e6
+        ,"relax_initial_state": false
+        ,"fixed_high_res_mesh": false
+    }
+}
+
