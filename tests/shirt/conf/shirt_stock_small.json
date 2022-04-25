@@ -1,0 +1,50 @@
+{
+    "hylc": {
+        "enabled": true,
+        "material": "hylcmaterials/stock01.json"
+    },
+    "implicit": true,
+
+    "frame_time": 0.0167,
+    "frame_steps": 20,
+
+    "end_time": 20,
+    "cloths": [{
+        // "mesh": "meshes/tshirtiso_uv.obj",
+        "mesh": "meshes/tshirtiso_uvS.obj",
+        "transform": {"translate": [0, 0.88329, -0.2601], "rotate": [90, 1, 0, 0]},
+        // "mesh": "meshes/tshirt2_uv.obj",
+        // "transform": {"translate": [0.0,0.0,0.5]},
+        "materials": [{"data": "materials/navy-sparkle-sweat.json", "bending_mult": 0.1,
+            "damping": 2e-3}], // ?
+        "remeshing": {
+            "refine_angle": 0.3,
+            "refine_compression": 0.01,
+            "refine_velocity": 0.5,
+            // "size": [4e-3, 100e-3], // trying smaller for stock NOTE: too fine R suggested less fine
+            "size": [10e-3, 100e-3], // bigger smaller for stock
+            // "size": [10e-3, 50e-3],
+            "boundary_detail_mult": 0.25, // with remeshing this affects the max size..
+            "aspect_min": 0.2
+        }
+    }],
+    "wind": {"density": 1}, // 1e1 was too high, even 0.2 seemed too high, so just default
+    "obstacles": "meshes/guy_shrunk/body%04d.obj",
+    "motions": {
+        "motfile": "meshes/karate-smooth.mot",
+        "fps": 120,
+        "transform": {
+            "translate": [3, -0.85, -0.7],
+            "rotate": [180, 0, 0, 1]
+        }
+    },
+    "gravity": [0, 0, -9.8],
+    "disable": ["popfilter"],
+    "obs_friction": 0.75, // maybe reduce?
+    "magic": {"repulsion_thickness": 5e-3//5e-3 
+       ,"collision_stiffness": 1e6
+       ,"relax_initial_state": false
+       ,"fixed_high_res_mesh": false
+    }
+}
+

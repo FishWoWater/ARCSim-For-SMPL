@@ -1,0 +1,45 @@
+{
+    "hylc": {
+        "enabled": true,
+        "material": "hylcmaterials/honey1.json"
+    },
+    "implicit": true,
+
+    "frame_time": 0.0167,
+    "frame_steps": 10,
+
+    "end_time": 20,
+    "cloths": [{
+        "mesh": "meshes/tshirt2iso_uv.obj",
+        "transform": {"translate": [0.0,0.0,0.0]},
+        // "mesh": "meshes/tshirt2_uv.obj",
+        // "transform": {"translate": [0.0,0.0,0.5]},
+        "materials": [{"data": "materials/navy-sparkle-sweat.json", "bending_mult": 0.1,
+            "damping": 2e-3}], // ?
+        "remeshing": {
+            "refine_angle": 0.3,
+            "refine_compression": 0.01,
+            "refine_velocity": 0.5,
+            "size": [15e-3, 50e-3],
+            "aspect_min": 0.2
+        }
+    }],
+    "wind": {"density": 0.6e1},// ?
+    "obstacles": "meshes/guy_shrunk/body%04d.obj",
+    "motions": {
+        "motfile": "meshes/karate-smooth.mot",
+        "fps": 120,
+        "transform": {
+            "translate": [3, -0.85, -0.7],
+            "rotate": [180, 0, 0, 1]
+        }
+    },
+    "gravity": [0, 0, -9.8],
+    "disable": ["popfilter"],
+    "obs_friction": 0.75,
+    "magic": {"repulsion_thickness": 5e-3, "collision_stiffness": 1e6
+       ,"relax_initial_state": true
+       ,"fixed_high_res_mesh": true
+    }
+}
+

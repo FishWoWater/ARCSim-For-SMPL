@@ -1,0 +1,45 @@
+{
+    "hylc": {
+        "enabled": true,
+        "material": "hylcmaterials/stock01.json"
+    },
+    "implicit": true,
+
+    "frame_time": 0.0167,
+    "frame_steps": 80,
+    "end_time": 3, // 45 frames no wind and then turn on strong wind
+    "cloths": [{
+        "mesh": "meshes/hylc_tmp.obj",
+        //"transform": {"scale": 0.15, "translate": [0.0,0.0,0.01], "rotate": [90,1,0,0]},
+        //"transform": {"scale": 0.15, "translate": [0.0,0.0,0.01], "rotate": [-90,1,0,0]},
+        "transform": {"scale": 0.15, "translate": [0.0,0.0,0.02], "rotate": [115,1,0,0]},
+
+        "materials": [{"data": "materials/gray-interlock.json",
+                       "thicken": 2, "damping": 1e-2}],
+        "remeshing": {
+            "refine_angle": 0.2,
+            "refine_compression": 0.005,
+            "refine_velocity": 0.5,
+            "size": [2e-3, 60e-3],"boundary_detail_mult": 0.5,
+            "aspect_min": 0.2
+        }
+    }],
+    "disable": ["popfilter"
+        //,"remeshing"
+    ],
+    "obs_friction": 2,
+    "friction": 1,
+    "wind": {"density": 1},
+    //"wind": {"density": 1, "velocity": [4.0,1.2,-0.01], "drag": 1},
+
+    "obstacles": [{
+        "mesh": "meshes/square.obj",
+        "transform": {"scale": 1, "translate": [-0.5,-0.5,-2e-3]}
+    }],
+    "gravity": [0, 0, -9.8],
+    "magic": {
+      "repulsion_thickness": 0.5e-3,
+      "collision_stiffness": 1e6,
+      "relax_initial_state": true
+    }
+}

@@ -1,0 +1,248 @@
+bah.cpp:    if (!box.overlaps(node->box))
+bah.cpp:    if (node->face) {
+bah.cpp:        callback(face, node->face);
+bah.cpp:        for_overlapping_faces(face, box, node->left, callback);
+bah.cpp:        for_overlapping_faces(face, box, node->right, callback);
+breaking.cpp:	const double min_length = node->mesh->parent->remeshing.size_min * 0.1;
+breaking.cpp:    const double cut_min_length = node->mesh->parent->remeshing.size_min * 0.05;
+breaking.cpp:	for (size_t e=0; e<node->adje.size(); e++) {
+breaking.cpp:		Edge* edge = node->adje[e];
+breaking.cpp:		Vec3 s0 = normalize(other_node(start, node)->x - node->x);
+breaking.cpp:		Vec3 s1 = normalize(other_node(end, node)->x - node->x);
+breaking.cpp:		node->x += normalize(cross(s1-s0,normal<WS>(node))) * disp;
+breaking.cpp:	Node* new_node = new Node(node->y,node->x,node->v,node->label,node->flag, true);
+breaking.cpp:	node->preserve = true;
+breaking.cpp:	op.apply(*node->mesh);
+breaking.cpp:			node->mesh->remove(it->first);
+breaking.cpp:	node->preserve = true;
+breaking.cpp:	for (size_t e=0; e<node->adje.size(); e++) {
+breaking.cpp:		Edge* edge = node->adje[e];
+breaking.cpp:	for (size_t e=0; e<node->adje.size(); e++) {
+breaking.cpp:		Edge* edge = node->adje[e];
+bvh.cpp:  box += node->x;
+bvh.cpp:    box += node->x0;
+bvh.cpp:    total += _mdl->verts[i]->node->x;
+bvh.cpp:      total += _mdl->verts[i]->node->x0;
+bvh.cpp:    vec3f &p1 = _mdl->faces[i]->v[0]->node->x;
+bvh.cpp:    vec3f &p2 = _mdl->faces[i]->v[1]->node->x;
+bvh.cpp:    vec3f &p3 = _mdl->faces[i]->v[2]->node->x;
+bvh.cpp:    vec3f &pp1 = _mdl->faces[i]->v[0]->node->x0;
+bvh.cpp:    vec3f &pp2 = _mdl->faces[i]->v[1]->node->x0;
+bvh.cpp:    vec3f &pp3 = _mdl->faces[i]->v[2]->node->x0;
+cloth.cpp:      face->v[v]->node->m += face->m / 3.;
+collision.cpp:double get_mass (const Node *node) {return is_free(node) ? node->m : obs_mass;}
+collision.cpp:            for (int v = 0; v < node->verts.size(); v++)
+collision.cpp:                for (int f = 0; f < node->verts[v]->adjf.size(); f++)
+collision.cpp:                    mark_active(*acc, node->verts[v]->adjf[f]);
+collision.cpp:    return node->x0 + t*(node->x - node->x0);}
+collision.cpp:        Vec3 dx = node->x - get_xold(node);
+collision.cpp:        Vec3 dx = node->x - get_xold(node);
+collisionutil.cpp:    if (node->isLeaf()) {
+collisionutil.cpp:        int f = node->getFace()->index;
+collisionutil.cpp:        collect_leaves(node->getLeftChild(), leaves);
+collisionutil.cpp:        collect_leaves(node->getRightChild(), leaves);
+collisionutil.cpp:    node->_active = active;
+collisionutil.cpp:    if (!node->isLeaf()) {
+collisionutil.cpp:        mark_descendants(node->_left, active);
+collisionutil.cpp:        mark_descendants(node->_right, active);
+collisionutil.cpp:    node->_active = active;
+collisionutil.cpp:    if (!node->isRoot())
+collisionutil.cpp:        mark_ancestors(node->_parent, active);
+collisionutil.cpp:	if (node->isLeaf() || !node->_active)
+collisionutil.cpp:	for_overlapping_faces(node->getLeftChild(), thickness, callback);
+collisionutil.cpp:	for_overlapping_faces(node->getRightChild(), thickness, callback);
+collisionutil.cpp:	for_overlapping_faces(node->getLeftChild(), node->getRightChild(),
+conf.cpp:        cpynodes.append(mesh.verts[i]->node->index);
+conf.cpp:      Vec3 &x = mesh.verts[i]->node->x;
+conf.cpp:        cpynodes.append(mesh.verts[i]->node->index);
+conf.cpp:      han->node->preserve = true;
+conf.cpp:      han->node->preserve = true;
+constraint.cpp:    return dot(n, node->x - x);
+constraint.hpp:    // n . (node->x - x) = 0
+display.cpp:    Mat3x2 F = derivative(face->v[0]->node->x, face->v[1]->node->x,
+display.cpp:                          face->v[2]->node->x, face);
+display.cpp:            vertex(face->v[v]->node->y);
+display.cpp:            vertex(node->x);
+display.cpp:            vertex(node->x + dt*node->v);
+display.cpp:            vertex(node->x);
+display.cpp:            vertex(node->x - dt*node->v);
+display.cpp:            vertex(node->x);
+display.cpp:            vertex(node->x + dt*node->v);
+display.cpp:            vertex(node->x);
+display.cpp:            vertex(node->x - dt*node->v);
+display.cpp:            vertex(node->x);
+display.cpp:            vertex(node->x + dt2*node->acceleration);
+display.cpp:            vertex(node->x);
+display.cpp:            vertex(node->x - dt2*node->acceleration);
+dynamicremesh.cpp:        Plane p = planes[face->v[v]->node->index];
+dynamicremesh.cpp:            h[v1] = dot(face->v[v1]->node->x - p.first, p.second);
+dynamicremesh.cpp:    Mat3x2 Sw2 = derivative(face->v[0]->node->n, face->v[1]->node->n,
+dynamicremesh.cpp:                             face->v[2]->node->n, face);
+dynamicremesh.cpp:    Mat3x2 V = derivative(face->v[0]->node->v, face->v[1]->node->v,
+dynamicremesh.cpp:                          face->v[2]->node->v, face);
+dynamicremesh.cpp:    Mat3x2 F = derivative(face->v[0]->node->x, face->v[1]->node->x,
+dynamicremesh.cpp:                          face->v[2]->node->x, face);
+dynamicremesh.cpp:    for (int e = 0; e < node->adje.size(); e++)
+dynamicremesh.cpp:        if (node->adje[e]->label)
+geometry.cpp:template <> const Vec3 &pos<PS> (const Node *node) {return node->y;}
+geometry.cpp:template <> const Vec3 &pos<WS> (const Node *node) {return node->x;}
+geometry.cpp:template <> Vec3 &pos<PS> (Node *node) {return node->y;}
+geometry.cpp:template <> Vec3 &pos<WS> (Node *node) {return node->x;}
+handle.cpp:        x0 = motion ? inverse(normalize(motion->pos(t))).apply(node->x) : node->x;
+handle.cpp:        if (node->label != label)
+handle.cpp:        double theta = 2*M_PI*dot(node->verts[0]->u, u)/c;
+handle.cpp:        for (int e = 0; e < node->adje.size(); e++) {
+handle.cpp:            const Edge *edge = node->adje[e];
+io.cpp:                          angle(vert0->node->x,vert1->node->x,vert2->node->x),
+io.cpp:                          angle(vert1->node->x,vert2->node->x,vert0->node->x),
+io.cpp:                          angle(vert2->node->x,vert0->node->x,vert1->node->x));
+io.cpp:        file << "v " << node->x[0] << " " << node->x[1] << " "
+io.cpp:             << node->x[2] << endl;
+io.cpp:        if (norm2(node->x - node->y))
+io.cpp:            file << "ny " << node->y[0] << " " << node->y[1] << " "
+io.cpp:                 << node->y[2] << endl;
+io.cpp:        if (norm2(node->v))
+io.cpp:            file << "nv " << node->v[0] << " " << node->v[1] << " "
+io.cpp:                 << node->v[2] << endl;
+io.cpp:        if (node->label)
+io.cpp:            file << "nl " << node->label << endl;
+io.cpp:        file << "f " << face->v[0]->node->index+1 << "/" << face->v[0]->index+1
+io.cpp:             << " " << face->v[1]->node->index+1 << "/" << face->v[1]->index+1
+io.cpp:             << " " << face->v[2]->node->index+1 << "/" << face->v[2]->index+1
+localopt.cpp:            E += node->m * dot(node->acceleration, node->x);
+mesh.cpp:        if (find((Vert*)vert, vert->node->verts) == -1) {
+mesh.cpp:        for (int i = 0; i < node->verts.size(); i++)
+mesh.cpp:            check(node, node->verts[i], mesh.verts);
+mesh.cpp:            check(node, node->adje[i], mesh.edges);
+mesh.cpp:    node->a = 0;
+mesh.cpp:    for (int v = 0; v < node->verts.size(); v++)
+mesh.cpp:        node->a += node->verts[v]->a;
+mesh.cpp:    const Vec3 &x0 = face->v[0]->node->x,
+mesh.cpp:               &x1 = face->v[1]->node->x,
+mesh.cpp:               &x2 = face->v[2]->node->x;
+mesh.cpp:    node->n = Vec3(0);
+mesh.cpp:    for (int v = 0; v < node->verts.size(); v++) {
+mesh.cpp:        const Vert *vert = node->verts[v];
+mesh.cpp:            Vec3 e1 = face->v[j1]->node->x - node->x,
+mesh.cpp:                 e2 = face->v[j2]->node->x - node->x;
+mesh.cpp:            node->n += cross(e1,e2)/(2*norm2(e1)*norm2(e2));
+mesh.cpp:    node->n = normalize(node->n);
+mesh.cpp:    include(vert, node->verts);
+mesh.cpp:    node->preserve = false;
+mesh.cpp:    node->index = nodes.size()-1;
+mesh.cpp:    node->adje.clear();
+mesh.cpp:    for (int v = 0; v < node->verts.size(); v++)
+mesh.cpp:        node->verts[v]->node = node;
+mesh.cpp:    if (!node->adje.empty()) {
+mesh.cpp:             << node->adje.size() << " edges attached to it." << endl;
+mesh.cpp:        if (is_seam_or_boundary(node) || node->label)
+mesh.cpp:            node->preserve = true;
+misc.cpp:        if (!node->label)
+misc.cpp:            node->label = meshw.nodes[n]->label;
+misc.cpp:        mesh.add(new Face(mesh.verts[face->v[0]->node->index],
+misc.cpp:                          mesh.verts[face->v[1]->node->index],
+misc.cpp:                          mesh.verts[face->v[2]->node->index], face->label));
+misc.cpp:        meshw.add(new Vert(vert->u, vert->node->label));
+misc.cpp:        meshw.add(new Node(vert->node->x, Vec3(0), vert->node->label));
+morph.cpp:        x += w[m]*(b[0]*face->v[0]->node->x
+morph.cpp:                   + b[1]*face->v[1]->node->x
+morph.cpp:                   + b[2]*face->v[2]->node->x);
+morph.cpp:        for (int v = 0; v < node->verts.size(); v++)
+morph.cpp:            x += morph.pos(t, node->verts[v]->u);
+morph.cpp:        node->x = x/(double)node->verts.size();
+nearobs.cpp:    if (node->isLeaf())
+nearobs.cpp:        update_nearest_point(x, node->getFace(), p);
+nearobs.cpp:        double d = point_box_distance(x, node->_box);
+nearobs.cpp:        update_nearest_point(x, node->getLeftChild(), p);
+nearobs.cpp:        update_nearest_point(x, node->getRightChild(), p);
+nearobs.cpp:    double d = unsigned_vf_distance(x, face->v[0]->node->x, face->v[1]->node->x,
+nearobs.cpp:                                       face->v[2]->node->x, &n, w);
+nearobs.cpp:        p.x = -(w[1]*face->v[0]->node->x + w[2]*face->v[1]->node->x
+nearobs.cpp:              + w[3]*face->v[2]->node->x);
+obstacle.cpp:        Vec3 x0 = trans.apply(node->x0);
+obstacle.cpp:        node->x = x0 + blend*(node->x - x0);
+physics.cpp:  return node->index < mesh.nodes.size() && mesh.nodes[node->index] == node;
+physics.cpp:      v_dot_grad += dot(it->second, node->v);
+physics.cpp:        v_dot_grad += dot(it->second, node->v);
+physics.cpp:      b[node->index] += dt * it->second;
+physics.cpp:    A(n, n) += Mat3x3(node->m) - dt * dt * Jext[n];
+physics.cpp:    node->v += dv[n];
+physics.cpp:      node->x += node->v * dt;
+physics.cpp:    node->acceleration = dv[n] / dt;
+physics.cpp:    Vec3 dv = 1.0 / node->m * b[n] - dt * massdamping * node->v;
+physics.cpp:    node->v += dv;
+physics.cpp:      node->x += node->v * dt;
+physics.cpp:    node->acceleration = dv / dt;
+physics.cpp:      (face->v[0]->node->v + face->v[1]->node->v + face->v[2]->node->v) / 3.;
+physics.cpp:      fext[face->v[v]->node->index] += fw / 3.;
+physics.cpp:    // Vec3 n = vert->node->n;
+physics.cpp:    fext[vert->node->index] -= k * (vert->node->x - x);
+physics.cpp:    fext[vert->node->index] -= d * vert->node->v;
+physics.cpp:    Jext[vert->node->index] -= k + d / dt;
+physics.cpp:      int n = node->index;
+popfilter.cpp:            x0[n] = node->x;
+popfilter.cpp:            a0[n] = node->acceleration;
+popfilter.cpp:        e += node->m*dot(node->acceleration, node->x - x0[n]);
+popfilter.cpp:        e += ::mu*norm2(node->x - x0[n])/2.;
+popfilter.cpp:        set_subvec(g, n, -f[n] + node->m*a0[n]
+popfilter.cpp:                         + ::mu*(node->x - x0[n]));
+proximity.cpp:    double d = signed_vf_distance(node->x, face->v[0]->node->x,
+proximity.cpp:                                  face->v[1]->node->x, face->v[2]->node->x,
+proximity.cpp:        int side = dot(n, node->n)>=0 ? 0 : 1;
+proximity.cpp:        return node->a;
+proximity.cpp:    for (int v = 0; v < node->verts.size(); v++)
+proximity.cpp:        for (int f = 0; f < node->verts[v]->adjf.size(); f++)
+proximity.cpp:            a += area(node->verts[v]->adjf[f])/3;
+proximity.cpp:    const Vec3 &x0 = face->v[0]->node->x, &x1 = face->v[1]->node->x,
+proximity.cpp:               &x2 = face->v[2]->node->x;
+proxy.cpp:    if (!is_free(node) || node->x[1] - center.x[1] > ::magic.repulsion_thickness)
+proxy.cpp:    con->stiff = ::magic.collision_stiffness * node->a;
+remesh.cpp:    node->acceleration = (node0->acceleration + node1->acceleration)/2.;
+separate.cpp:    return b[0]*face->v[0]->node->x
+separate.cpp:         + b[1]*face->v[1]->node->x
+separate.cpp:         + b[2]*face->v[2]->node->x;
+separate.cpp:    const Vec3 &x0 = plane->v[0]->node->x, &n = plane->n;
+separate.cpp:        h[v] = dot(face->v[v]->node->x - x0, n);
+separate.cpp:        const Vec3 &xv = face0->v[v]->node->x, &x0 = face1->v[0]->node->x,
+separate.cpp:                   &x1 = face1->v[1]->node->x, &x2 = face1->v[2]->node->x;
+separate.cpp:            const Vec3 &x00 = face0->v[e0]->node->x,
+separate.cpp:                       &x01 = face0->v[NEXT(e0)]->node->x,
+separate.cpp:                       &x10 = face1->v[e1]->node->x,
+separate.cpp:                       &x11 = face1->v[NEXT(e1)]->node->x;
+separate.cpp:        f += inv_m*node->a*dot(dx,dx)/2;
+separate.cpp:        set_subvec(grad, n, inv_m*node->a*dx);
+separate.cpp:        Vec3 x0 = (i0 != -1) ? get_subvec(x, i0) : ixn.f0->v[v]->node->x,
+separate.cpp:             x1 = (i1 != -1) ? get_subvec(x, i1) : ixn.f1->v[v]->node->x;
+separateobs.cpp:    return b[0]*face->v[0]->node->x + b[1]*face->v[1]->node->x
+separateobs.cpp:         + b[2]*face->v[2]->node->x;
+separateobs.cpp:    const Vec3 &x0 = plane->v[0]->node->x, &n = plane->n;
+separateobs.cpp:        h[v] = dot(face->v[v]->node->x - x0, n);
+separateobs.cpp:        const Vec3 &xv = face0->v[v]->node->x, &x0 = face1->v[0]->node->x,
+separateobs.cpp:                   &x1 = face1->v[1]->node->x, &x2 = face1->v[2]->node->x;
+separateobs.cpp:            const Vec3 &x00 = face0->v[e0]->node->x,
+separateobs.cpp:                       &x01 = face0->v[NEXT(e0)]->node->x,
+separateobs.cpp:                       &x10 = face1->v[e1]->node->x,
+separateobs.cpp:                       &x11 = face1->v[NEXT(e1)]->node->x;
+separateobs.cpp:        Vec3 x0 = (i0 != -1) ? get_subvec(x, i0) : ixn.f0->v[v]->node->x,
+separateobs.cpp:             x1 = (i1 != -1) ? get_subvec(x, i1) : ixn.f1->v[v]->node->x;
+sepstrength.cpp:    	F_bend += face->v[i]->node->curvature * (0.5 * face->material->fracture_bend_thickness);
+sepstrength.cpp:        F_bend += face->v[i]->node->curvature * (0.5 * face->material->fracture_bend_thickness);
+sepstrength.cpp:	for (size_t e=0; e<node->adje.size(); e++) {
+sepstrength.cpp:		Edge* edge = node->adje[e];
+sepstrength.cpp:	if (!start) start = node->adje[0];
+sepstrength.cpp:	if (!end) end = node->adje[0];
+sepstrength.cpp:	if (fan.size() < node->adje.size())
+sepstrength.cpp:		fan.resize(node->adje.size());
+sepstrength.cpp:        	//if (node->index == I) wait_key();
+sepstrength.cpp:    node->sep = maxSplit.sep;
+simulation.cpp:    node->v += (node->x - xold[n]) * inv_dt;
+simulation.cpp:        node->v = (node->x - node->x0) / sim.step_time;
+simulation.cpp:        node->x = node->x0;
+strainlimiting.cpp:        set_subvec(x, n, node->x);
+strainlimiting.cpp:        Mat3x2 F = derivative(face->v[0]->node->x, face->v[1]->node->x,
+strainlimiting.cpp:                              face->v[2]->node->x, face);
+strainlimiting.cpp:        Vec3 dx = node->x - xold[n];
+strainlimiting.cpp:        f += inv_m*node->m*norm2(dx)/2.;
+strainlimiting.cpp:        Vec3 dx = node->x - xold[n];
+strainlimiting.cpp:        set_subvec(grad, n, inv_m*node->m*dx);
+util.cpp:  out << "n:" << name(node) << node->verts;

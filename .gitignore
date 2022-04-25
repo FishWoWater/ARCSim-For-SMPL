@@ -1,0 +1,19 @@
+# vscode
+.vscode*
+.VSCode*
+# compiled stuff
+build*/
+.vscode*
+# other stuff
+*.kdev4
+*~
+.ipynb_checkpoints
+__pycache__
+*.pch
+*.tags*
+*TAGS*
+*tags*
+
+*XDG_CACHE_HOME*
+
+backup_local/*

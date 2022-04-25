@@ -1,0 +1,45 @@
+{
+    "hylc": {
+        "enabled": true,
+        "material": "hylcmaterials/rib1.json"
+        // ,"stiffness_mult": 2
+    },
+    "implicit": true,
+
+    "frame_time": 0.0167,
+    "frame_steps": 20,//100
+    "end_time": 3,
+    "cloths": [{
+
+        "mesh": "meshes/hylc_scarf.obj",
+        "transform": {"scale": 0.7, "translate": [-0.18,-0.14,0.42], "rotate": [90,1,-0.5,0]},
+        "materials": [{"data": "materials/navy-sparkle-sweat.json", "bending_mult": 0.1,
+            "damping": 1e-2}], // ?
+        "remeshing": {
+            "refine_angle": 0.3,
+            "refine_compression": 0.01,
+            "refine_velocity": 0.5,
+            "size": [12e-3, 50e-3],
+            "aspect_min": 0.2
+        }
+    }],
+    "disable": ["popfilter"
+        // ,"remeshing"
+    ],
+    "obs_friction": 4.0, //0.5
+    "friction": 4.0,
+    "wind": {"density": 16}, //8
+
+    "obstacles": [{
+        "mesh": "meshes/square.obj",
+        "transform": {"scale": 1, "translate": [-0.5,-0.5,10e-3]}
+    },{
+        "mesh": "meshes/hylc_yarnny.obj",
+        "transform": {"scale": 0.42, "translate": [0.0,0.0,0.005], "rotate": [180,0,1,1]}
+    }],
+    "gravity": [0, 0, -9.8],
+    "magic": {"repulsion_thickness": 5e-3, "collision_stiffness": 1e6
+       ,"relax_initial_state": true
+       ,"fixed_high_res_mesh": true
+    }
+}

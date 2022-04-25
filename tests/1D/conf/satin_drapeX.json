@@ -1,0 +1,53 @@
+{
+    "hylc": {
+        "enabled": true,
+        "material": "hylcmaterials/satin1.json",
+        "only1D": true
+    },
+    // "disable": ["remeshing"],
+    "implicit": true,
+    // "explicit_massdamping": 1e-1, // maybe even lower
+    // "explicit_stretchdamping": 1e-2, // stiffest term
+    "frame_time": 0.0167,
+    "frame_steps": 50,
+    "end_time": 2,
+    "cloths": [{
+        "mesh": "meshes/hylc_square.obj",
+        "transform": {"scale": 0.3, "translate": [-0.15, -0.15, 0.0]},
+        "materials": [{"data": "materials/gray-interlock.json",
+                       "thicken": 1, "damping": 1.35e-2}]
+                       ,"remeshing": {
+                           "refine_angle": 0.3,
+                           "refine_compression": 0.01,
+                           "refine_velocity": 0.5,
+                           "size": [3e-3, 15e-3],//40
+                           "boundary_detail_mult": 0.5, //0.25
+                           "aspect_min": 0.2
+                       }
+    }],
+    "wind": {"density": 5},
+
+    // "handles": [{"nodes": [2,3]}
+    "handlespheres": [{
+        "radius": 0.01,
+        "center": [-0.1, -0.1, 0]
+    },{
+        "radius": 0.01,
+        "center": [-0.1, 0.1, 0]
+    }],
+    "obstacles": [{
+        "mesh": "meshes/sphere.obj",
+        "transform": {"scale": 0.03,"translate": [0.0,0.0,-0.04]}
+    }],
+    "gravity": [0, 0, -9.81],
+    "obs_friction": 0.052,
+    "magic": {
+        // "repulsion_thickness": 1e-4, 
+        "repulsion_thickness": 1e-3, 
+        // "repulsion_thickness": 5e-3, 
+        "handle_stiffness": 1e5,
+        "collision_stiffness": 1e6,
+	      "relax_initial_state": false
+        //   ,"fixed_high_res_mesh": true
+            }
+}
