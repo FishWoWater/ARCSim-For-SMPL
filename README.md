@@ -12,7 +12,7 @@ addons
 flags:
 * `is_smpl`
 * `motions`->`'smpl_fps`  how fast smpl model act 
-* `smpl_motfile`
-* `smpl_initialization_steps` (for shape and pose interpolation)
+* `motions`->`smpl_motfile`
+* `motions`->`smpl_initialization_steps` (for shape and pose interpolation)
 
-Thanks for @isantesteban for valuable discussions
+Thanks for @[isantesteban](https://github.com/isantesteban) for valuable discussions
