@@ -72,10 +72,10 @@ void init_physics (const string &json_file, string outprefix,
 
 static void save (const vector<Mesh*> &meshes, int frame, bool is_obs=false) {
     if (!outprefix.empty() && frame < 10000)
-        std::cout << "before saving cloth mesh" <<std::endl; 
+        // std::cout << "before saving cloth mesh" <<std::endl; 
         if(is_obs)  save_objs(meshes, stringf("%s/obs_%04d", outprefix.c_str(), frame));
         else    save_objs(meshes, stringf("%s/%04d", outprefix.c_str(), frame));
-        std::cout << "end saving cloth mesh" <<std::endl; 
+        // std::cout << "end saving cloth mesh" <<std::endl; 
 }
 
 static void save_obstacle_transforms (const vector<Obstacle> &obs, int frame,
@@ -85,12 +85,12 @@ static void save_obstacle_transforms (const vector<Obstacle> &obs, int frame,
             Transformation trans = identity_();
             if (obs[o].transform_spline) {
                 trans = get_dtrans(*obs[o].transform_spline, time).first;
-                std::cout << "get dtrans finished, to save transformation" << std::endl;
+                // std::cout << "get dtrans finished, to save transformation" << std::endl;
                 save_transformation(trans, stringf("%s/%04dobs%02d.txt",
                                                    outprefix.c_str(), frame, o));
             }else if(obs[o].smpl_motion){
                 trans = get_smpl_transformation(*obs[0].smpl_motion, time);
-                std::cout << "get smpl transform finished, to save transformation" << std::endl;
+                // std::cout << "get smpl transform finished, to save transformation" << std::endl;
                 // logic for saving smpl transform
                 save_smpl_transformation(trans, stringf("%s/%04dobs%02d.txt",
                                                    outprefix.c_str(), frame, o));
@@ -116,7 +116,7 @@ void save (const Simulation &sim, int frame) {
     // also to save the obstacles
     // save(sim.obstacle_meshes, frame, true);
     save_obstacle_transforms(sim.obstacles, frame, sim.time);
-    std::cout << "end saving obs transform" <<std::endl; 
+    // std::cout << "end saving obs transform" <<std::endl; 
 }
 
 void sim_step() {

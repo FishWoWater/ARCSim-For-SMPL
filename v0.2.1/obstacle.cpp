@@ -65,7 +65,7 @@ Mesh& Obstacle::get_smpl_mesh(double time) {
     // 1. interpolate the quaternion in transformation 
     // 2. convert quaternion to axis-angle 
     // 3. parse axis-angle poses and betas to smpl model;
-    std::cout << "entering get smpl mesh" << std::endl;
+    // std::cout << "entering get smpl mesh" << std::endl;
     Quaternion x; 
     // x.to_axisangle; 
     if (time > end_time)
@@ -81,7 +81,7 @@ Mesh& Obstacle::get_smpl_mesh(double time) {
         Vec3 smpl_translation = smpl_transformation.translation;
         // used for interpolation
         std::vector<double> dynamic_betas = smpl_transformation.dynamic_betas;
-        std::cout << "smpl translation:" << smpl_translation << std::endl;
+        // std::cout << "smpl translation:" << smpl_translation << std::endl;
         Eigen::VectorXf thetas, dyna_betas;
         thetas.resize(72);
         dyna_betas.resize(10);
@@ -102,7 +102,7 @@ Mesh& Obstacle::get_smpl_mesh(double time) {
 
         smpl->setAllShapes(dyna_betas);
         smpl->updateModel();
-        std::cout << "smpl model updated" << std::endl;
+        // std::cout << "smpl model updated" << std::endl;
 //        smpl->saveToOBJ("rest_smpl.obj");
 //        exit(0);
 
@@ -118,13 +118,13 @@ Mesh& Obstacle::get_smpl_mesh(double time) {
             mesh.nodes[n]->x[1] = vertices(n, 1) + smpl_translation[1];
             mesh.nodes[n]->x[2] = vertices(n, 2) + smpl_translation[2];
         }
-        std::cout << "smpl mesh assigned to arcsim mesh" << std::endl; 
+        // std::cout << "smpl mesh assigned to arcsim mesh" << std::endl; 
         compute_ws_data(mesh);
     }
     if (!activated)
         update_x0(curr_state_mesh);
     activated = true;
-    std::cout << "smpl mesh updated" << std::endl; 
+    // std::cout << "smpl mesh updated" << std::endl; 
     return curr_state_mesh;
 }
 

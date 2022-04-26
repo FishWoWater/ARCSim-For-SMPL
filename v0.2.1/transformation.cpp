@@ -257,8 +257,8 @@ DTransformation get_dtrans (const Motion &motion, double t) {
 
 std::vector<Quaternion> get_smpl_quaternions(const Motion &motion, double t){
     // input transform_spline: spline<transformation> where
-    std::cout << "entering get smpl quaternions" << std::endl;
-    std::cout << "T.rotations" << motion.points[0].x.rotations.size() << std::endl;
+    // std::cout << "entering get smpl quaternions" << std::endl;
+    // std::cout << "T.rotations" << motion.points[0].x.rotations.size() << std::endl;
 //    for(int i=0;i<motion.points.size();i++) {
 //        std::cout << motion.points[i].x.rotations[0] << std::endl;
 //    }
@@ -267,20 +267,20 @@ std::vector<Quaternion> get_smpl_quaternions(const Motion &motion, double t){
     for(int i=0;i<T.rotations.size();i++){
         T.rotations[i] = normalize(T.rotations[i]);
     }
-    std::cout << "T.rotations" << T.rotations.size() << std::endl;
+    // std::cout << "T.rotations" << T.rotations.size() << std::endl;
     return T.rotations;
 }
 
 Transformation get_smpl_transformation(const Motion &motion, double t){
     // input transform_spline: spline<transformation> where
-    std::cout << "entering get smpl transformation" << std::endl;
-    std::cout << "T.rotations" << motion.points[0].x.rotations.size() << std::endl;
+    // std::cout << "entering get smpl transformation" << std::endl;
+    // std::cout << "T.rotations" << motion.points[0].x.rotations.size() << std::endl;
 
     Transformation T = motion.pos(t);
     for(int i=0;i<T.rotations.size();i++){
         T.rotations[i] = normalize(T.rotations[i]);
     }
-    std::cout << "T.rotations" << T.rotations.size() << std::endl;
+    // std::cout << "T.rotations" << T.rotations.size() << std::endl;
     return T;
 }
 

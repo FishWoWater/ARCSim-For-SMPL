@@ -214,7 +214,7 @@ vector<Face*> triangulate (const vector<Vert*> &verts) {
 }
 
 void save_obj (const Mesh &mesh, const string &filename) {
-    std::cout << "start saving obj" << filename << std::endl; 
+    // std::cout << "start saving obj" << filename << std::endl; 
     fstream file(filename.c_str(), ios::out);
     for (int v = 0; v < mesh.verts.size(); v++) {
         const Vert *vert = mesh.verts[v];
@@ -264,11 +264,11 @@ void save_obj (const Mesh &mesh, const string &filename) {
         if (face->damage)
             file << "td " << face->damage << endl;
     }
-    std::cout << "end saving obj" << filename << std::endl; 
+    // std::cout << "end saving obj" << filename << std::endl; 
 }
 
 void save_objs (const vector<Mesh*> &meshes, const string &prefix) {
-    std::cout << "insidebefore saving cloth mesh" <<std::endl; 
+    // std::cout << "insidebefore saving cloth mesh" <<std::endl; 
     for (int m = 0; m < meshes.size(); m++)
         save_obj(*meshes[m], stringf("%s_%02d.obj", prefix.c_str(), m));
 }

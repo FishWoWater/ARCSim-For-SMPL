@@ -49,7 +49,7 @@ static bool running = true;
 static void reload () {
     int fullframe = ::frame*::frameskip;
     sim.time = fullframe * sim.frame_time;
-    std::cout << "cloth file" << stringf("%s/%04d_00.obj",inprefix.c_str(), fullframe) << std::endl;
+    // std::cout << "cloth file" << stringf("%s/%04d_00.obj",inprefix.c_str(), fullframe) << std::endl;
     if(!boost::filesystem::exists(stringf("%s/%04d_00.obj",inprefix.c_str(), fullframe))){
         std::cout << "can not find cloth file" << std::endl;
         if (::frame == 0)

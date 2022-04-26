@@ -155,7 +155,6 @@ void load_json(const string &configFilename, Simulation &sim) {
     sim.enabled[Simulation::StrainLimiting] = false;
   if (!has_plasticity)
     sim.enabled[Simulation::Plasticity] = false;
-  std::cout << "obstacled parsed" << std::endl; 
 }
 
 // Basic data types
