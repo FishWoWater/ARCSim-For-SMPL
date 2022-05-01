@@ -39,7 +39,7 @@ Demo
 
 TODOs
 
-- [ ] Support SMPL female model (now only male model is supported)
+- [x] Support SMPL female model (now only male model is supported)
 - [ ] Support CMU MoCap sequence reading from npz or json file (now read from txt motion file)
 
 
