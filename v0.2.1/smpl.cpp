@@ -137,7 +137,6 @@ bool SMPL::loadPoseFromJSONFile(std::string filePath){
 }
 
 bool SMPL::loadModelFromJSONFile(std::string filePath){
-    std::cout << "begin to load smpl model" << std::endl;
     ifstream in(filePath);
     Json::Value root;
     in >> root;
@@ -148,6 +147,7 @@ bool SMPL::loadModelFromJSONFile(std::string filePath){
 
     loadEigenFromJSON(root["pose"], mPose);
     loadTensorFromJSON(root["shapedirs"], mShapedDirsTensor);
+    loadTensorFromJSON(root["posedirs"], mPoseDirsTensor);
     loadEigenFromJSON(root["f"], mF);
     loadEigenFromJSON(root["kintree_table"], mKintreeTable);
     loadEigenFromJSON(root["J"], mJ);
@@ -167,7 +167,7 @@ bool SMPL::loadModelFromJSONFile(std::string filePath){
     mWeightsT = mWeights.transpose();
 
     loadEigenFromJSON(root["vert_sym_idxs"], vertSymIdxs);
-    loadSparseFromJSON(root["J_regressor"], mJR, 24, mV.rows());
+    loadEigenFromJSON(root["J_regressor"], mJR);
 
     return true;
     }
@@ -222,13 +222,36 @@ bool SMPL::updateModel(bool jointsOnly){
             mVTemp1(i,2) = mV(i,2) + AB(i,2,0);
             mVTemp1(i,3) = 1;
         }
+        // obtain poses_flat(207-dim vector from mPoses)
+        for(int i=0; i<23; i++){
+            cv::Mat src(cv::Size(1,3),CV_32FC1,cv::Scalar(0));
+            src.at<float>(0) = mPose(i+1, 0);
+            src.at<float>(1) = mPose(i+1, 1);
+            src.at<float>(2) = mPose(i+1, 2);
+            cv::Mat dst;
+            cv::Rodrigues(src, dst);
+            for(int j=0; j<3; j++){
+                for(int k=0; k<3; k++){
+                    if(j == k)  mPose_flat(i * 9 + 3 * j + k, 0) = dst.at<float>(j, k) - 1;
+                    else mPose_flat(i * 9 + 3 * j + k, 0) = dst.at<float>(j, k);
+                }
+            }
+        }
+
 
         // Shape J
         mJTemp2.row(0) = mJ.row(0);
         mJTemp1 = mJR * mVTemp1;
-        //mJTemp1 = mJ;
 
-//        cout << mJTemp1 << endl;
+        TensorD<3> pose_blend_shapes = mPoseDirsTensor.dot(mPose_flat);
+        for(int i=0; i<mVTemp1.rows(); i++){
+            mVTemp1(i,0) = mVTemp1(i,0) + pose_blend_shapes(i,0,0);
+            mVTemp1(i,1) = mVTemp1(i,1) + pose_blend_shapes(i,1,0);
+            mVTemp1(i,2) = mVTemp1(i,2) + pose_blend_shapes(i,2,0);
+            mVTemp1(i,3) = 1;
+        }
+
+        // cout << mJTemp1 << endl;
 
         // Body pose
         Eigen::Matrix4f& bodyPose = globalTransforms[0];
@@ -289,4 +312,5 @@ bool SMPL::updateModel(bool jointsOnly){
         }
 
         return true;
-    }
+
+}

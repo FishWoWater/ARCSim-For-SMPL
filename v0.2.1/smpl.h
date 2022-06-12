@@ -25,11 +25,13 @@ public:
     Eigen::MatrixXf mWeightsT;
     Eigen::MatrixXf vertSymIdxs;
     Eigen::MatrixXf mBetas;
-    Eigen::SparseMatrix<float> mJR;
+    Eigen::MatrixXf mPose_flat;
+    Eigen::MatrixXf mJR;
     typedef Eigen::Matrix<float, 4, 24> BlockMatrix;
     std::vector<Eigen::MatrixXf> weightedBlockMatrix1;
     std::vector<BlockMatrix> blocks;
     TensorD<3> mShapedDirsTensor;
+    TensorD<3> mPoseDirsTensor;
 
     SMPL(){
         blocks.resize(4);
@@ -37,6 +39,7 @@ public:
         mBetas.resize(10,1);
         mPose.resize(24, 3); 
         mBetas.setZero();
+        mPose_flat.resize(207, 1);
     }
 
     enum Part

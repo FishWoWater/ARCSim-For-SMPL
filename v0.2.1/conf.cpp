@@ -393,10 +393,12 @@ void parse_smpl_motions(vector<Motion> &motions, const Json::Value &json, bool& 
             Quaternion rest = Quaternion();
             rest.s = 1.;
             rest.v = Vec3(0., 0., 0.);
+            /*
             if(pid == 0){
                 rest.s = 0.707106;
                 rest.v[0] = 0.707106;
             }
+            */
             motions[0].points[fid].x.rotations.push_back(rest * (1 - scale) + q * scale);
             // nonsense
             motions[0].points[fid].x.rotation = q;
@@ -404,7 +406,11 @@ void parse_smpl_motions(vector<Motion> &motions, const Json::Value &json, bool& 
         }
         // interpolation for dynamic betas
         for(int i=0;i<10;i++){
-            motions[0].points[fid].x.dynamic_betas[i] = smpl_betas[i] * scale;
+            // if(i == 1){
+            //     motions[0].points[fid].x.dynamic_betas[i] = smpl_betas[i] * scale + (1 - scale);
+            // }else{
+                motions[0].points[fid].x.dynamic_betas[i] = smpl_betas[i] * scale;
+            // }
 //            if(i == 1)  motions[0].points[fid].x.dynamic_betas[i] = 2;
         }
         motions[0].points[fid].t = (fid / fps) - 0;

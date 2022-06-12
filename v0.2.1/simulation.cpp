@@ -133,9 +133,13 @@ void advance_step(Simulation &sim) {
   update_obstacles(sim, sim.is_smpl);
   vector<Constraint *> cons = get_constraints(sim, true);
   physics_step(sim, cons);
+  // std::cout << "physics step finished" << std::endl; 
   plasticity_step(sim);
+  // std::cout << "plasticity step finished" << std::endl; 
   strainlimiting_step(sim, cons);
+  // std::cout << "strainlimiting step finished" << std::endl; 
   collision_step(sim);
+  // std::cout << "collision step finished" << std::endl; 
   if (sim.step % sim.frame_steps == 0) {
 //     remeshing_step(sim);
     sim.frame++;
