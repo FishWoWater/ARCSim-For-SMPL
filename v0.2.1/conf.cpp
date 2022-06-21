@@ -371,13 +371,14 @@ void parse_smpl_motions(vector<Motion> &motions, const Json::Value &json, bool& 
             trans(fid, i) = tmp;
         }
     }
+    int keep_frames = 10;
     // thetas now have F x 72 in axis-angle representations
     // should parse thetas into one motion
     // motion is Spline<transformation>
     // only one part for SMPL
     motions.resize(1);
     // points is a structure with x and v, where x is the transformation
-    motions[0].points.resize(num_frames + initialization_frames);
+    motions[0].points.resize(num_frames + initialization_frames + keep_frames);
     // consider the interpolation process
     for(int fid = 0;fid < initialization_frames;fid++){
         double scale = double(fid) / double(initialization_frames);
@@ -415,9 +416,32 @@ void parse_smpl_motions(vector<Motion> &motions, const Json::Value &json, bool& 
         }
         motions[0].points[fid].t = (fid / fps) - 0;
     }
+    for(int fid = initialization_frames; fid < initialization_frames + keep_frames; fid++){
+        motions[0].points[fid].x.translation = Vec3(trans(0, 0), trans(0, 1), trans(0, 2));
+        for(int pid = 0;pid < 24; pid++){
+            float thetax = thetas(0,3 * pid), thetay = thetas(0,3 * pid + 1), thetaz = thetas(0,3 * pid + 2);
+            // calculate the normalize angle and axis
+            float angle = sqrt(thetax * thetax + thetay * thetay + thetaz * thetaz) + 1e-8;
+            Vec3 axis = Vec3(thetax / angle, thetay / angle, thetaz / angle);
+            Quaternion q = Quaternion::from_axisangle(axis, angle);
+            // rotations contain 24 parts
+            motions[0].points[fid].x.rotations.push_back(q);
+            // setup the translation
+            // nonsense
+            motions[0].points[fid].x.rotation = q;
+            motions[0].points[fid].v.rotations.emplace_back(Quaternion());
 
-    for (int fid = initialization_frames; fid < num_frames + initialization_frames; fid++) {
-        int fid2 = fid - initialization_frames;
+        }
+        motions[0].points[fid].v = Transformation();
+        motions[0].points[fid].x.dynamic_betas.resize(10);
+        for(int i=0;i<10;i++){
+            motions[0].points[fid].x.dynamic_betas[i] = smpl_betas[i];
+        }
+        motions[0].points[fid].t = (fid / fps) - 0;     // here 0 indicates the start time
+    }
+
+    for (int fid = initialization_frames + keep_frames; fid < num_frames + initialization_frames + keep_frames; fid++) {
+        int fid2 = fid - initialization_frames - keep_frames;
         motions[0].points[fid].x.translation = Vec3(trans(fid2, 0), trans(fid2, 1), trans(fid2, 2));
         for(int pid = 0;pid < 24; pid++){
             float thetax = thetas(fid2,3 * pid), thetay = thetas(fid2,3 * pid + 1), thetaz = thetas(fid2,3 * pid + 2);
@@ -441,6 +465,14 @@ void parse_smpl_motions(vector<Motion> &motions, const Json::Value &json, bool& 
 //        std::cout << "smpl dynamic betas set" << std::endl;
         motions[0].points[fid].t = (fid / fps) - 0;     // here 0 indicates the start time
 
+    }
+    // fill in the velocity
+    for(int fid=0;fid<num_frames+initialization_frames+keep_frames;fid++){
+        if(fid == 0 || fid == num_frames+initialization_frames+keep_frames-1){
+            motions[0].points[fid].v = motions[0].points[fid].x * 0;
+        }else{
+            motions[0].points[fid].v = (motions[0].points[fid + 1].x - motions[0].points[fid-1].x) / (motions[0].points[fid+1].t - motions[0].points[fid-1].t);
+        }
     }
     Eigen::MatrixXf theta_mat;
     theta_mat.resize(24, 3);

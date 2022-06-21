@@ -57,15 +57,28 @@ T Spline<T>::pos (double t) const {
          const Point &p0 = points[i-1], &p1 = points[i];
 //         return p0.x;
          double s = (t - p0.t)/(p1.t - p0.t), s2 = s*s, s3 = s2*s;
-
-//         T tmp2 = p0.x*(2*s3 - 3*s2 + 1) + p1.x*(-2*s3 + 3*s2)
-//                  + (p0.v*(s3 - 2*s2 + s) + p1.v*(s3 - s2))*(p1.t - p0.t);
-
-//         return tmp2;
+//         std::cout << "p0, p1t t " << p0.t << " " <<p1.t << " " << t << std::endl;
+//         std::cout << "s, s2, s3 " << s << " " << s2 << " " << s3 << std::endl;
+//
+//         T tmp21 = p0.x*(2*s3 - 3*s2 + 1) + p1.x*(-2*s3 + 3*s2);
+//         std::cout << "tmp21 obtained" << std::endl;
+//         T tmp22 = p0.v*(s3 - 2*s2 + s);
+//         std::cout << "tmp22 obtained" << std::endl;
+//         T tmp23 = p1.v*(s3 - s2);
+//         std::cout << "tmp23 obtained" << std::endl;
+//         T tmp24 = (p0.v*(s3 - 2*s2 + s) + p1.v*(s3 - s2))*(p1.t - p0.t);
+//         T tmp25 = p0.x*(2*s3 - 3*s2 + 1) + p1.x*(-2*s3 + 3*s2);
+//         std::cout << "tmp24 obtained" << std::endl;
+//         T tmp26 = tmp24 + tmp25;
+//        std::cout << "tmp24 obtained" << std::endl;
+         T tmp2 = p0.x*(2*s3 - 3*s2 + 1) + p1.x*(-2*s3 + 3*s2)
+                  + (p0.v*(s3 - 2*s2 + s) + p1.v*(s3 - s2))*(p1.t - p0.t);
+//         std::cout << "tmp2 obtained" << std::endl;
+         return tmp2;
 //         return p0.x*(2*s3 - 3*s2 + 1) + p1.x*(-2*s3 + 3*s2);
 
             // don't consider the velocity term
-            return p0.x * (1 - s) + p1.x * s;
+//            return p0.x * (1 - s) + p1.x * s;
     }
 }
 

@@ -141,11 +141,12 @@ void advance_step(Simulation &sim) {
   collision_step(sim);
   // std::cout << "collision step finished" << std::endl; 
   if (sim.step % sim.frame_steps == 0) {
-//     remeshing_step(sim);
+    remeshing_step(sim);
     sim.frame++;
   }
   // only remesh at the beginning
 //  if (sim.step == 1) remeshing_step(sim);
+  // remeshing_step(sim); 
   delete_constraints(cons);
 }
 
@@ -362,6 +363,7 @@ void update_obstacles(Simulation &sim, bool update_positions) {
         sim.obstacles[o].blend_with_previous(sim.time, sim.step_time, blend);
     }else{
         sim.obstacles[o].get_smpl_mesh(sim.time);
+//        sim.obstacles[o].smpl_blend_with_previous(sim.time, sim.step_time, blend);
     }
     if (!update_positions and !sim.is_smpl) {
       // put positions back where they were
@@ -376,7 +378,9 @@ void update_obstacles(Simulation &sim, bool update_positions) {
         for (int n = 0; n < mesh.nodes.size(); n++) {
             Node *node = mesh.nodes[n];
             // set to 0.
-            node->v = (node -> x - node -> x) / sim.step_time;
+            // node->v = (node -> x - node -> x) / sim.step_time;
+            node->v = (node->x - node->x0) / sim.step_time;
+            node->x = node->x0; 
         }
     }
   }

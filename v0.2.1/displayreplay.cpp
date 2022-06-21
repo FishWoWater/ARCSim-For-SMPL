@@ -70,7 +70,12 @@ static void reload () {
     }
     for (int o = 0; o < sim.obstacles.size(); o++) {
         if(!sim.is_smpl)    sim.obstacles[o].get_mesh(sim.time);
-        else    sim.obstacles[o].get_smpl_mesh(sim.time);
+        else{
+//            double decay_time = 0.1, blend = sim.step_time / decay_time;
+//            blend = blend / (1 + blend);
+            sim.obstacles[o].get_smpl_mesh(sim.time);
+//            sim.obstacles[o].smpl_blend_with_previous(sim.time, sim.step_time, blend);
+        }
     }
 }
 

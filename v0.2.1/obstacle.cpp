@@ -102,7 +102,7 @@ Mesh& Obstacle::get_smpl_mesh(double time) {
 
         smpl->setAllShapes(dyna_betas);
         smpl->updateModel();
-        // std::cout << "smpl model updated" << std::endl;
+//         std::cout << "smpl model updated" << std::endl;
 //        smpl->saveToOBJ("rest_smpl.obj");
 //        exit(0);
 
@@ -142,3 +142,20 @@ void Obstacle::blend_with_previous (double t, double dt, double blend) {
     }
     compute_ws_data(mesh);
 }
+
+void Obstacle::smpl_blend_with_previous (double t, double dt, double blend) {
+    const Motion *spline = smpl_motion;
+//    Transformation trans = (spline)
+//                           ? get_trans(*spline, t)
+//                             * inverse(get_trans(*spline, t-dt))
+//                           : identity_();
+    Mesh &mesh = curr_state_mesh;
+    for (int n = 0; n < mesh.nodes.size(); n++) {
+        Node *node = mesh.nodes[n];
+//        Vec3 x0 = trans.apply(node->x0);
+        Vec3 x0 = node -> x0;
+        node->x = x0 + blend*(node->x - x0);
+    }
+    compute_ws_data(mesh);
+}
+

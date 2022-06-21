@@ -114,7 +114,7 @@ static void save_timings () {
 void save (const Simulation &sim, int frame) {
     save(sim.cloth_meshes, frame);
     // also to save the obstacles
-    // save(sim.obstacle_meshes, frame, true);
+      save(sim.obstacle_meshes, frame, true);
     save_obstacle_transforms(sim.obstacles, frame, sim.time);
     // std::cout << "end saving obs transform" <<std::endl; 
 }

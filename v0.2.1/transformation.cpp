@@ -280,7 +280,7 @@ Transformation get_smpl_transformation(const Motion &motion, double t){
     for(int i=0;i<T.rotations.size();i++){
         T.rotations[i] = normalize(T.rotations[i]);
     }
-    // std::cout << "T.rotations" << T.rotations.size() << std::endl;
+//     std::cout << "L283, T.rotations obtained" << T.rotations.size() << std::endl;
     return T;
 }
 

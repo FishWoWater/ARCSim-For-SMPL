@@ -53,6 +53,7 @@ public:
 
     // lerp with previous mesh at time t - dt
     void blend_with_previous (double t, double dt, double blend);
+    void smpl_blend_with_previous (double t, double dt, double blend);
 
     const Motion *transform_spline;
 
