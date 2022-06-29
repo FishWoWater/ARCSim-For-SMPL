@@ -21,11 +21,11 @@ Usage
 
 * Simulate a simple motion `hands raise up` with shape / pose interpolation 
 
-  * `./build-Release/bin/arcsim_0.2.1 simulate smpl_demo/pbns_sbs_male.json`
+  * `./build-Release/bin/arcsim_0.2.1 simulate smpl_demo/jump.json`
 
 * Just checkout the motion and save each screen shot to some directory(optional)
 
-  * `./build-Release/bin/arcsim_0.2.1 play smpl_demo/pbns_sbs_male.json vis`
+  * `./build-Release/bin/arcsim_0.2.1 play smpl_demo/jump.json vis`
 
   * the visualization will be saved to `vis` directory, this is a useful tool for the visualization of MoCap sequences
 
