@@ -31,9 +31,9 @@ Usage
 
     
 
-Demo 
+Demo(simulate mode)
 
-![](imgs/demo_handsup.gif)
+![](imgs/demo_jump.mp4)
 
 
 
