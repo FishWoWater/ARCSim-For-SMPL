@@ -19,7 +19,7 @@ fields:
 
 Usage
 
-* Simulate a simple motion `hands raise up` with shape / pose interpolation 
+* Simulate a simple motion `jumping` with shape / pose interpolation 
 
   * `./build-Release/bin/arcsim_0.2.1 simulate smpl_demo/jump.json`
 
@@ -33,7 +33,7 @@ Usage
 
 Demo(simulate mode)
 
-![](imgs/demo_jump.mp4)
+![](imgs/demo_jump.gif)
 
 
 
